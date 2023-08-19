@@ -110,3 +110,16 @@ The `lambda_handler` function is designed to be triggered by AWS Lambda events. 
 To deploy the script on AWS, you need to upload a ZIP file containing all the utilized libraries as well as the `lambda_function` script and `anon.session` generated using `log.py`. The `AWS files.zip` contains all the necessary files except for `anon.session`. If you want to use this script, just generate `anon.session` and add it to the zip file, then upload the file to AWS.
 
 Of course, if you prefer, you can install all the required libraries and bundle them along with `lambda_function.py` into a ZIP file. In that case, I recommend using environments, like Anaconda, to create a new environment and then install only the required libraries and bundle them.
+
+Remember that on AWS, you need to add the following environment variables: 
+```python
+api_id = os.environ.get('API_ID')
+api_hash = os.environ.get('API_HASH')
+twilio_account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
+twilio_auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
+twilio_phone_number = os.environ.get('TWILIO_PHONE_NUMBER')
+destination_phone_number = os.environ.get('DESTINATION_PHONE_NUMBER')
+name_of_chat = os.environ.get('NAME_OF_TELEGRAM_CHAT')
+```
+
+And you need to set a trigger. I set mine to 1M because I want the function to run 3 times a minute, every 20 seconds.
