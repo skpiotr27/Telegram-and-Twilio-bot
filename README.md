@@ -3,6 +3,39 @@
 The bot I'm presenting was implemented in one of my projects. Its task was simple - if I have unread messages on Telegram (on a specific chat), then make a call using the Twilio API.
 
 ## Description of functions
+
+## `log.py` Function
+
+This script provides a basic demonstration of connecting to the Telegram API using the Telethon Python library. It initiates a connection to Telegram and starts a client session.
+
+### Prerequisites
+
+- Telethon library: Install it using pip:
+  ```
+  pip install telethon
+  ```
+
+### Configuration
+
+- **api_id**: Your unique API ID provided by Telegram. You can obtain it by registering your app at [Telegram's developer portal](https://my.telegram.org/auth).
+- **api_hash**: Your unique API hash provided alongside the `api_id`.
+
+Replace `"YOUR_API_ID"` and `"YOUR_API_HASH"` in the code with your actual credentials.
+
+### Execution
+
+1. Ensure the Telethon library is installed and the above configurations are set.
+2. Run the script. On the first run, you'll be prompted to enter your phone number and a verification code sent to your Telegram account. This establishes the 'anon' session.
+3. Subsequent runs will use the 'anon' session and won't prompt for the phone number or verification code.
+
+### Notes:
+
+- The script uses an 'anon' session, which means session data will be stored locally in a file named 'anon.session'. Handle this file with care as it contains session data.
+- Make sure not to share your `api_id` and `api_hash` as they are sensitive credentials.
+
+---
+
+
 ## `produce_result` Function
 
 This function is designed to monitor unread messages in a specific chat on Telegram. If there are any unread messages, the function initiates a phone call through Twilio, notifying the user about the unread messages.
@@ -67,3 +100,8 @@ The `lambda_handler` function is designed to be triggered by AWS Lambda events. 
 
 ---
 
+# Implementation on Amazon Web Services (AWS).
+
+To deploy the script on AWS, you need to upload a ZIP file containing all the utilized libraries as well as the `lambda_function` script and `anon.session` generated using `log.py`. The `AWS files.zip` contains all the necessary files except for `anon.session`. If you want to use this script, just generate `anon.session` and add it to the zip file, then upload the file to AWS.
+
+Of course, if you prefer, you can install all the required libraries and bundle them along with `lambda_function.py` into a ZIP file. In that case, I recommend using environments, like Anaconda, to create a new environment and then install only the required libraries and bundle them.
