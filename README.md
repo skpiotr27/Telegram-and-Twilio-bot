@@ -1,3 +1,8 @@
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Twilio)
+![Framework Name](https://img.shields.io/badge/frameworkName-aws--cdk-green)
+
+
+
 # Telegram-and-Twilio-bot
 
 The bot I'm presenting was implemented in one of my projects. Its task was simple - if I have unread messages on Telegram (on a specific chat), then make a call using the Twilio API.
